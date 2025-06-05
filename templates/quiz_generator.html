@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EduAI</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+
+<body>
+	<header class="p-3 text-bg-dark">
+		<div class="container">
+			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+					<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+						<use xlink:href="#bootstrap" />
+					</svg>
+				</a>
+
+				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+					<li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+					<li><a href="/noteGenerator" class="nav-link px-2 text-white">Note-Maker</a></li>
+					<li><a href="/quizMaker" class="nav-link px-2 text-white">Quiz-Maker</a></li>
+					<li><a href="/derivativeCalculator" class="nav-link px-2 text-white">Math Solver</a></li>
+				</ul>
+
+				<div class="text-end">
+					<button onclick="location.href='/my_notes'" type="button" class="btn btn-outline-light me-2">My Notes</button>
+				</div>
+
+				<div class="text-end">
+					<button onclick= "location.href='/my_quizzes'" type="button" class="btn btn-outline-light me-2">My Quizzes</button>
+				</div>
+
+				{% if session.get('user') %}
+				<div class="text-end">
+					<button onclick="location.href='/logout'" type="button" class="btn btn-outline-light me-2">Logout</button>
+				</div>
+				{% else %}
+				<div class="text-end">
+					<button onclick="location.href='/login'" type="button" class="btn btn-outline-light me-2">Login</button>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center mt-5">Quiz Generation</h1>
+				<p class="text-center">Make quizzes about a topic quickly and easily.</p>
+				<div class="card mt-5">
+					<div class="card-body">
+						<h5 class="card-title">Example Quiz</h5>
+						<div class="accordion" id="accordQuiz">
+							<p class="card-text">Prompt: Make a 10th grade mulitple-choice test on basic biology concepts.</p>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingOne">
+									<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										Questions
+									</button>
+								</h2>
+								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+									<div class="accordion-body">
+										<ol>
+											<li>
+												<p>What is the basic unit of life?<br>
+													a) Atom<br>
+													b) Cell<br>
+													c) Tissue<br>
+													d) Organ
+												</p>
+											</li>
+											<li>
+												<p>Which organelle is known as the powerhouse of the cell?<br>
+													a) Nucleus<br>
+													b) Ribosome<br>
+													c) Mitochondria<br>
+													d) Chloroplast
+												</p>
+											</li>
+											<li>
+												<p>What is the primary function of ribosomes?<br>
+													a) Energy production<br>
+													b) Protein synthesis<br>
+													c) Storage of nutrients<br>
+													d) Photosynthesis
+												</p>
+											</li>
+											<li>
+												<p>In which part of the plant does photosynthesis primarily occur?<br>
+													a) Roots<br>
+													b) Stems<br>
+													c) Leaves<br>
+													d) Flowers
+												</p>
+											</li>
+											<li>
+												<p>What process do cells use to divide and reproduce?<br>
+													a) Diffusion<br>
+													b) Mitosis<br>
+													c) Osmosis<br>
+													d) Respiration
+												</p>
+											</li>
+											<li>
+												<p>Which of the following is a type of genetic mutation?<br>
+													a) Insertion<br>
+													b) Deletion<br>
+													c) Substitution<br>
+													d) All of the above
+												</p>
+											</li>
+											<li>
+												<p>What is the role of enzymes in biological reactions?<br>
+													a) To increase activation energy<br>
+													b) To slow down reactions<br>
+													c) To catalyze reactions<br>
+													d) To eliminate waste
+												</p>
+											</li>
+											<li>
+												<p>What molecule carries genetic information?<br>
+													a) Protein<br>
+													b) RNA<br>
+													c) DNA<br>
+													d) Lipid
+												</p>
+											</li>
+											<li>
+												<p>Which of the following is NOT a characteristic of living organisms?<br>
+													a) Growth<br>
+													b) Reproduction<br>
+													c) Respiration<br>
+													d) Absorption of sunlight
+												</p>
+											</li>
+											<li>
+												<p>What is the function of the cell membrane?<br>
+													a) To provide energy<br>
+													b) To control the movement of substances in and out of the cell<br>
+													c) To store genetic material<br>
+													d) To synthesize proteins
+												</p>
+											</li>
+										</ol>
+										<p></p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingTwo">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										Answers
+									</button>
+								</h2>
+								<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+									<div class="accordion-body">
+										<ol>
+											<li>b</li>
+											<li>c</li>
+											<li>b</li>
+											<li>c</li>
+											<li>b</li>
+											<li>d</li>
+											<li>c</li>
+											<li>c</li>
+											<li>d</li>
+											<li>b</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- TODO: add a special section that gives extra details, that opens to the side of the form -->
+		<div class="container horizontal-accordion my-5" style="max-width:600px;">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<p class="text-center">Quiz yourself quickly by selecting a difficulty and subject to create questions based on.</p>
+					<form id="quizForm" class="row g-3">
+
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="difficulty" class="form-label">Grade Difficulty:</label>
+								<input type="number" class="form-control" id="difficulty" placeholder="Select 1-12, 13+ for college">
+							</div>
+
+							<div class="mb-3">
+								<label for="num_questions" class="form-label">Number of Questions</label>
+								<input type="number" class="form-control" id="num_questions" placeholder="At most 20 questions" min="1" max="20">
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="content" class="form-label">Content:</label>
+								<input type="text" class="form-control" id="content" placeholder="Choose Anything">
+							</div>
+
+							<div class="mb-3">
+								<label for="question_type" class="form-label">Question Type:</label>
+								<select class="form-select" id="question_type" name="question_type">
+									<option value="multiple-choice">Multiple Choice</option>
+									<option value="free-response">Free Response</option>
+									<option value="true/false">True/False</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-12 d-flex align-items-center">
+							<div class="form-check me-auto">
+								<label for="checkbox" class="form-check-label">Include Question Hints</label>
+								<input class="form-check-input" type="checkbox" id="checkbox" name="checkbox" value="on">
+							</div>
+							<button id="difficulty_submission" type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		<div class="row">
+			<div class="col-md-12 pb-5">
+				<h1 class="text-center mt-5">Your Output</h1>
+				<div class="card mt-5">
+					<div class="card-body">
+						<h5 class="card-title">Quiz</h5>
+						<p id="generated_text" class="card-text"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script src="{{ url_for('static', filename='reroute_quiz.js') }}"></script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

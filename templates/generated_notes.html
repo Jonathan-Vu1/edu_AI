@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EduAI</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+	<header class="p-3 text-bg-dark">
+		<div class="container">
+			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+					<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+						<use xlink:href="#bootstrap" />
+					</svg>
+				</a>
+
+				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+					<li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+					<li><a href="/noteGenerator" class="nav-link px-2 text-white">Note-Maker</a></li>
+					<li><a href="/quizMaker" class="nav-link px-2 text-white">Quiz-Maker</a></li>
+					<li><a href="/derivativeCalculator" class="nav-link px-2 text-white">Math Solver</a></li>
+				</ul>
+
+				<div class="text-end">
+					<button onclick= "location.href='/my_notes'" type="button" class="btn btn-outline-light me-2">My Notes</button>
+				</div>
+
+				<div class="text-end">
+					<button onclick= "location.href='/my_quizzes'" type="button" class="btn btn-outline-light me-2">My Quizzes</button>
+				</div>
+
+				{% if session.get('user') %}
+					<div class="text-end">
+						<button onclick= "location.href='/logout'" type="button" class="btn btn-outline-light me-2">Logout</button>
+					</div>
+				{% else %}
+					<div class="text-end">
+						<button onclick= "location.href='/login'" type="button" class="btn btn-outline-light me-2">Login</button>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</header>
+
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center mt-5">Create Notes</h1>
+				<p class="text-center">With any link or text, create easy, quickly generated notes on topics.</p>
+				<div class="card mt-5">
+					<div class="card-body">
+						<h5 class="card-title">Example Note</h5>
+						<p class="card-text">Prompt: https://en.wikipedia.org/wiki/Artificial_intelligence</p>
+						<h3>Summary Notes on Artificial Intelligence (AI)</h3>
+						<p><strong>[Definition of AI]</strong><br />
+						- AI enables machines to perform tasks associated with human intelligence: learning, reasoning, problem-solving, perception, and decision-making.<br />
+						- It encompasses a range of techniques and fields, including search algorithms, logic, neural networks, and statistics.</p>
+						<p><strong>[Applications of AI]</strong><br />
+						- High-profile applications include web search engines, recommendation systems, virtual assistants, autonomous vehicles, and game analysis.<br />
+						- Many AI applications are now integrated into everyday tools, leading to a reduction in their label as "AI."</p>
+						<p><strong>[Subfields of AI]</strong><br />
+						- Key areas include natural language processing, robotics, perception, and knowledge representation.<br />
+						- General intelligence remains a long-term goal.</p>
+						<p><strong>[Historical Development]</strong><br />
+						- Founded in 1956, AI has experienced cycles of optimism and pessimism, with funding surges notably after 2012 due to deep learning advancements.<br />
+						- The AI boom of the early 2020s saw rapid investment and growth, alongside concerns regarding safety and ethical implications.</p>
+						<p><strong>[Learning Models]</strong><br />
+						- AI employs various learning models: supervised, unsupervised, reinforcement learning, and deep learning.<br />
+						- Machine learning allows AI to improve through experience, with models like neural networks gaining prominence.</p>
+						<p><strong>[Challenges and Risks]</strong><br />
+						- Issues include bias in algorithms, ethical concerns regarding privacy and data use, and potential misuse of AI technologies.<br />
+						- The emergence of generative AI raised concerns about misinformation and societal impacts.</p>
+						<p><strong>[Future Directions and Ethics]</strong><br />
+						- Ongoing debates about the risks of superintelligence and the ethical implications of AI technologies.<br />
+						- Regulatory frameworks are evolving globally to address these concerns, with initiatives focusing on safety and ethical use.</p>
+						<h3>Takeaways</h3>
+						<ul>
+						<li>AI's rapid growth presents both significant opportunities and ethical challenges, necessitating careful regulation and oversight.  </li>
+						<li>The integration of AI into various sectors emphasizes the need for transparency and fairness in AI systems to mitigate bias and misuse.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container my-5">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<div class="row g-4 align-items-start">
+						<div class="col-md-6">
+							<p class="text-center">Create your own notes with the generator below!</p>
+							<form id="noteForm">
+								<div class="mt-3 pb-3">
+									<div class="form-group">
+										<label for="input_url" class="pb-2">URL:</label>
+										<input type="url" class="form-control" id="input_url" aria-describedby="url_tip"
+											placeholder="Your URL here!">
+									</div>
+								</div>
+								<button id="url_submit" type="submit" class="btn btn-primary">Submit</button>
+							</form>
+						</div>
+						<div class="col-md-6">
+							<p class="text-center">You can also copy-paste your text below!</p>
+							<form id="noteFormNonUrl">
+								<div class="mt-3 pb-3">
+									<div class="form-group">
+										<label for="input_text" class="pb-2">Raw Text:</label>
+										<input maxlength="10000" type="text" class="form-control" id="input_text"
+											placeholder="Paste the text you want to summarize here!">
+									</div>
+								</div>
+								<button id="url_submit" type="submit" class="btn btn-primary">Submit</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12 pb-5">
+				<h1 class="text-center mt-5">Your Output</h1>
+				<div class="card mt-5">
+					<div class="card-body">
+						<h5 class="card-title">Note</h5>
+						<p id="generated_text" class="card-text"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</form>
+
+	<script src="{{ url_for('static', filename='reroute_notes.js') }}"></script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
