@@ -1,6 +1,7 @@
 setuptools>=65
 wheel
 gunicorn
+authlib
 absl-py==2.2.2
 annotated-types==0.7.0
 anyio==4.9.0
@@ -72,6 +73,7 @@ typing_extensions==4.13.2
 urllib3==2.4.0
 Werkzeug==3.1.3
 wrapt==1.14.1
+
 
 
 
