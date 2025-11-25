@@ -43,6 +43,7 @@ with app.app_context():
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 googleClientId = os.getenv("GOOGLE_CLIENT_ID")
 googleSecret = os.getenv("GOOGLE_CLIENT_SECRET")
+RENDER_URL = os.getenv("RENDER_URL")
 
 oauth = OAuth(app)
 
@@ -53,7 +54,8 @@ oauth.register(
     client_secret= googleSecret,
     client_kwargs={
         'scope': 'openid email profile'
-    }
+    },
+    redirect_uri=f"{RENDER_URL}/auth"
 )
 
 # Start of the Routes
@@ -335,9 +337,7 @@ def my_quizzes():
 @app.route('/login')
 def login():
     
-    redirect_uri = url_for('auth', _external=True)
-    print(redirect_uri)
-    return oauth.google.authorize_redirect(redirect_uri)
+    return oauth.google.authorize_redirect(f"{RENDER_URL}/auth")
 
 # Receives the OAuth callback and processes the user information
 @app.route('/auth')
